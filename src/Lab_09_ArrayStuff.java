@@ -69,7 +69,66 @@ public class Lab_09_ArrayStuff // class Lab_09_ArrayStuff
         } // end for
         System.out.println(userNum + " was found " + numCount + " times in dataPoints[].");
 
-        // Task 7 -
+        // Task 7 - Find first location of user value in dataPoints[] if it exists
+        int newUserNum = SafeInput.getRangedInt(in, "Enter a number between 1 & 100 to find its location in dataPoints[]", 1, 100); // output prompt
+        System.out.println("You chose: " + newUserNum); // output user input
+        numCount = 0; // rest numCount variable to store index based on number of loops
+        boolean foundTarget = false; // declare new variable to track if user num was found in dataPoints[]
+        for (int i = 0; i < ARRAY_LENGTH; i++) // iterate through dataPoints[]
+        {
+            if (newUserNum == dataPoints[i]) // if newUserNum  is in dataPoints[]
+            {
+                foundTarget = true; // go to else statement in outer if loop
+                break; // end if loop upon first discovery
+            } // end if
+            numCount++; // add one to index count
+        } // end iterations through dataPoints[]
+
+        if (!foundTarget) // if newUserNum is not in dataPoints[]
+        {
+            System.out.println("Target " + newUserNum + " not found!"); // output to user the num not found
+        }
+        else // if newUserNum is in dataPoints[]
+        {
+            System.out.println("Found " + newUserNum + " at index " + numCount); // output index location of newUserNum
+        } // end if / else
+
+        //Task 8 - Find the min & max in dataPoints[]
+        int minNum = dataPoints[0]; // declare & initialize variable to store minimum
+        int maxNum = dataPoints[0]; // declare & initialize variable to store maximum
+        for (int i = 0; i < ARRAY_LENGTH; i++) // iterate through dataPoints[]
+        {
+           if (minNum > dataPoints[i]) // if num is less than the current min
+           {
+               minNum = dataPoints[i]; // save num as new min
+           } // end if
+           if (maxNum < dataPoints[i]) // if num is greater than current max
+           {
+               maxNum = dataPoints[i]; // save num as new max
+           } // end if
+        } // end for loop iterations through the array
+        System.out.println("\nThe minimum value in dataPoints[] is: " + minNum); // output the minimum value in dataPoints[]
+        System.out.println("The maximum value in dataPoints[] is: " + maxNum); // output the maximum value in dataPoints[]
+
+        //Task 9 - Write a method below to calculate average of double values in an array
+        System.out.println("\nAverage of dataPoints is: " + getAverage(dataPoints));
 
     } // return main()
+
+    /**
+     *
+     * @param values to store an array
+     * @return a double value
+     */
+    public static double getAverage(int values[]) // method outside of main()
+    {
+        double total = 0; // declare & initialize total
+        double avg = 0.0; // declare & initialize avg
+        for (int i = 0; i < values.length; i++) // iterate through array values[]
+        {
+            total += values[i]; // sum of all values in values[]
+        } // end for
+        avg = (double) total / values.length; // calculate average of values in values[]
+        return avg; // return average value of values[]
+    }
 } // end class Lab_09_ArrayStuff
